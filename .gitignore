@@ -1,0 +1,19 @@
+```
+# Build artifacts
+dist/
+build/
+pages-dist/
+.wrangler/
+*.js
+
+# Dependencies
+node_modules/
+
+# Editors
+.vscode/
+
+# Environment
+.env
+.env.local
+*.env.*
+```

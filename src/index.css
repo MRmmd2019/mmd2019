@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  /* NEXUS-style theme: near-black green surfaces + one lime accent. */
+  --ink: #0a0f0b;
+  --ink-2: #111a13;
+  --line: rgba(255, 255, 255, 0.07);
+  --line-strong: rgba(198, 244, 91, 0.35);
+  --accent: #c6f45b;
+  --accent-dim: rgba(198, 244, 91, 0.14);
+  --muted: #7d9a80;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+  background: var(--ink);
+  color: #e6f1e6;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0c130e;
+}
+::-webkit-scrollbar-thumb {
+  background: #23301f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #35482d;
+}
+
+@layer components {
+  /* Surfaces: near-black glass with a hairline border, like the control cards. */
+  .glass-card {
+    @apply bg-[#0d1410]/80 backdrop-blur-xl border border-white/[0.07] rounded-3xl;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.03) inset, 0 18px 40px -28px rgba(0, 0, 0, 0.9);
+  }
+  .glass-card-hover {
+    @apply transition-all duration-300 hover:border-brand-300/30 hover:bg-[#111a13]/90;
+  }
+
+  /* Buttons: solid lime with dark ink text (the "Sync" / "اجرای Probe" look). */
+  .btn-primary {
+    @apply px-5 py-2.5 rounded-xl bg-brand-300 text-[#0b1207] font-bold transition-all duration-300 hover:bg-brand-200 hover:shadow-lg hover:shadow-brand-300/25 active:scale-[0.98] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-brand-300;
+  }
+  .btn-ghost {
+    @apply px-4 py-2.5 rounded-xl bg-white/[0.03] text-slate-200 font-medium transition-all duration-300 hover:bg-white/[0.07] hover:text-white border border-white/[0.08];
+  }
+  .btn-danger {
+    @apply px-4 py-2.5 rounded-xl bg-error-500/10 text-error-400 font-medium transition-all duration-300 hover:bg-error-500/20 border border-error-500/30;
+  }
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-black/40 border border-white/[0.08] text-white placeholder-slate-500 transition-all duration-200 focus:border-brand-300/50 focus:ring-2 focus:ring-brand-300/15 focus:outline-none;
+  }
+  .stat-card {
+    @apply glass-card glass-card-hover p-6 relative overflow-hidden;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium;
+  }
+
+  /* Small uppercase mono labels ("EDGE NETWORK", "REAL-TIME NETWORK CONTROL"). */
+  .eyebrow {
+    @apply text-[10px] font-mono uppercase tracking-[0.22em] text-brand-300/70;
+  }
+  .eyebrow-muted {
+    @apply text-[10px] font-mono uppercase tracking-[0.22em] text-slate-500;
+  }
+
+  /* Status chips (زنده / ابطیم / پینگ). */
+  .chip {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium border border-white/[0.08] bg-white/[0.02] text-slate-300;
+  }
+  .chip-live {
+    @apply chip border-brand-300/40 text-brand-200 bg-brand-300/[0.08];
+  }
+  .chip-warn {
+    @apply chip border-warning-400/40 text-warning-300 bg-warning-400/[0.08];
+  }
+
+  /* The lime hairline used to separate control blocks. */
+  .hairline {
+    @apply h-px w-full bg-gradient-to-l from-transparent via-white/10 to-transparent;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #dcfb92, #9ed4b0, #c6f45b);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(198, 244, 91, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(198, 244, 91, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(198, 244, 91, 0.1), transparent 55%);
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #16211a 25%, #23301f 50%, #16211a 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s linear infinite;
+}
